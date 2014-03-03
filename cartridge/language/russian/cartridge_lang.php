@@ -14,8 +14,8 @@ $lang['cartridge_list'] = 'Список картриджей';
 //
 //**********************************************
 
-$lang['frontend:cartridge:messages:no_address'] = 'У вас отсутствуетс адрес доставки, мы не можем продолжить. Обратитесь в службу поддежки.';
-$lang['frontend:cartridge:messages:have_open_order'] = 'У вас отсутствуетс адрес доставки, мы не можем продолжить. Обратитесь в службу поддежки.';
+$lang['frontend:cartridge:messages:no_address'] = 'У вас отсутствует адрес доставки, мы не можем продолжить. Обратитесь в службу поддежки.';
+$lang['frontend:cartridge:messages:have_open_order'] = 'У вас остались открытые заявки, закройте их и попробуйте снова.';
 $lang['frontend:cartridge:messages:max_order'] = 'Вы заказали больше, чем для вас доступно в данный момент.';
 $lang['frontend:cartridge:messages:order_is_close'] = 'Эта заявка уже закрыта';
 $lang['frontend:cartridge:messages:id_not_valid'] = 'ID заявки который вы указали не верен';
