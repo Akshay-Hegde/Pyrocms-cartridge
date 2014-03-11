@@ -14,9 +14,10 @@ class Admin_address extends Admin_Controller {
     }
     public function index ()
     {
+	$q = isset($_GET['q']) ? $_GET['q'] : '';
 	$this->data->address = $this->cartridge_m->get_address();
-        $this->data->users = $this->db->select('id, username')->get('users')->result();
-        $this->template->title($this->module_details['name'])->build('admin/address', $this->data);	
+        $this->data->users = $this->db->like('username', $q)->select('id, username')->get('users')->result();
+        $this->template->title($this->module_details['name'])->build('admin/address', $this->data);
     }
     
     public function edit ($id = NULL)

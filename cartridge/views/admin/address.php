@@ -2,6 +2,12 @@
 	<h4><?= lang('page:admin_limit:limit:title');?></h4>
 </section>
 <section class="item">
+<div>
+	<form action="/admin/cartridge/address" method="get" accept-charset="utf-8">
+		<input style="width: 80%" type="text" name="q" value="" placeholder="Enter a word"  />
+		<button style="width: 18%" type="submit" class="btn blue"><span>Search</span></button>
+	</form>
+</div>
 <? if (!empty($users)) { ?>
 <div id="filter-stage">
 			<table border="0" class="table-list">

@@ -64,12 +64,12 @@ class Module_Cartridge extends Module {
 		
 		$cartridge_settings = "
 			CREATE TABLE ".$this->db->dbprefix('cartridge_settings')." (
-			`id` INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-			`contractor` VARCHAR(255) NULL ,
-			`email` VARCHAR(255) NULL ,
-			`smpp` VARCHAR(255) NULL ,
-			`template` TEXT NULL,
-			`items_order` VARCHAR(255) NULL
+			id int(11) NOT NULL AUTO_INCREMENT,
+			contractor varchar(255) DEFAULT NULL,
+			email varchar(255) DEFAULT NULL,
+			template text DEFAULT NULL,
+			items_order varchar(255) DEFAULT NULL,
+			PRIMARY KEY (id)
 			) ENGINE = MYISAM CHARACTER SET utf8 COLLATE utf8_general_ci COMMENT = 'Таблица настроек модуля';
 		";
 		$cartridge_orders = "

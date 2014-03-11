@@ -53,7 +53,6 @@ class Cartridge_m extends MY_Model
     {
 	$this->db->set('contractor', $input['contractor']);
         $this->db->set('email', $input['email']);
-        $this->db->set('smpp', $input['smpp']);
         $this->db->set('template', $input['template']); //items_order
         $this->db->set('items_order', $input['items_order']); 
 	$this->db->insert('cartridge_settings');
@@ -64,7 +63,6 @@ class Cartridge_m extends MY_Model
 	$data = array(
             'contractor' => $input['contractor'],
             'email' => $input['email'],
-            'smpp' => $input['smpp'],
             'template' => $input['template'],
             'items_order' => $input['items_order'],
             );

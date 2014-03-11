@@ -23,10 +23,6 @@
 		<td><?= form_checkbox('email', isset($settings[0]->email) ? NULL : 1, isset($settings[0]->email) ? TRUE : FALSE);?></td>
 	</tr>
 	<tr>
-		<td>Send a sms to a contractor, when user create a order:</td>
-		<td><?= form_checkbox('smpp', isset($settings[0]->smpp) ? NULL : 1, isset($settings[0]->smpp) ? TRUE : FALSE);?></td>
-	</tr>
-	<tr>
 		<td>Please set the template for order:</td>
 		<td>
 			<?= form_textarea('template', isset($settings[0]->template) ? $settings[0]->template : '');?><br/>
@@ -39,6 +35,10 @@
 			{address} - the address of the user (sender)<br/>
 			{comment_form} - the comment of the user (sender)<br/>
 		</td>
+	</tr>
+	<tr>
+		<td>Email from</td>
+		<td><?= form_input('email', isset($settings[0]->email) ? $settings[0]->email : '');?></td>
 	</tr>
 	<tr>
 		<td>How many items can to order a user in a month</td>
