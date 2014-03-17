@@ -7,7 +7,7 @@
 <table style="width: 450px; border: 1px solid #eee;">
 	<tr>
 		<td>Enter address of user:</td>
-		<td><?= form_textarea('address', (isset($limit[0]->limit)) ? $limit[0]->limit : "");?></td>
+		<td><?= form_textarea('address', (isset($address[0]->address)) ? $address[0]->address : "");?></td>
 	</tr>
 	<tr>
 		<td colspan="2">
@@ -17,7 +17,7 @@
 		</td>
 	</tr>
 </table>
-<input type="hidden" name="user" value="<?= isset($codes[0]->user) ? $codes[0]->user : $active_id; ?>">
+<input type="hidden" name="user" value="<?= $active_id; ?>">
 
 <?= form_close(); ?>
 </section>

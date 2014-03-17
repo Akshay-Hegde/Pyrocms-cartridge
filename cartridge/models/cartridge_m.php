@@ -121,10 +121,11 @@ class Cartridge_m extends MY_Model
 	$this->db->insert('cartridge_orders');
     }
     
-    public function get_orders ($user_id, $active = '000')
+    public function get_orders ($user_id, $active = NULL)
     {
-	if ($active != 000) { $this->db->where('status', $active); }
+	if (!is_null($active)) { $this->db->where('status', $active); }
 	$this->db->limit(5);
+	$this->db->where('user_id', $user_id);
 	$this->db->order_by('id', 'DESC');
 	return $this->db->get('cartridge_orders')->result();
     }
@@ -158,11 +159,9 @@ class Cartridge_m extends MY_Model
     }
     function update_address ($input)
     {
-	$data = array(
-        'address' => $input['address']
-        );
-	$this->db->where('user', $input['id']);
-	return $this->db->get('cartridge_address')->result();
+	$this->db->set('address', $input['address']);
+	$this->db->where('user', $input['user']);
+	return $this->db->update('cartridge_address');
     }
     public function delete_address ($id)
     {

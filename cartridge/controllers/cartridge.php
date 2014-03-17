@@ -82,7 +82,6 @@ class Cartridge extends Public_Controller
     }
     public function orders ()
     {
-        
         $this->data->cartridges = $this->cartridge_m->get_cartridges();
         $this->data->active_orders = $this->cartridge_m->get_orders($this->current_user->id, 1);
         $this->data->not_active_orders = $this->cartridge_m->get_orders($this->current_user->id, 0);
