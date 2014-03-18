@@ -5,6 +5,7 @@ class Cartridge extends Public_Controller
     public function __construct()
     {
         parent::__construct();
+        $this->data = new stdClass();
         $this->load->model('cartridge_m');
         $this->lang->load('cartridge');
         $this->load->library('form_validation');
@@ -52,13 +53,15 @@ class Cartridge extends Public_Controller
                     }
                     else
                     {
+                    	$contractor = $this->cartridge_m->get_contractor($settings[0]->contractor);
+                    	
                         if (isset($settings[0]->email))
                         {
                             $contractor = $this->cartridge_m->get_contractor($settings[0]->contractor);
                             $cartridge = $this->cartridge_m->get_cartridge($_POST['cartridge_id']);
                             $message = $settings[0]->template;
                             $message = str_replace('{manager_name}', $contractor[0]->name, $message);
-                            $message = str_replace('{user}', $this->current_user->name, $message);
+                            $message = str_replace('{user}', $this->current_user->display_name, $message);
                             $message = str_replace('{cart_count}', $_POST['count_request'], $message);
                             $message = str_replace('{cart_name}', $cartridge[0]->name, $message);
                             $message = str_replace('{comment_form}', $_POST['comment'], $message);
@@ -66,7 +69,7 @@ class Cartridge extends Public_Controller
                             $message = str_replace('{address}', $address[0]->address, $message);
                             $message = str_replace("\n", "<br/>", $message);
                             $this->email->from($settings[0]->email);
-                            $this->email->to(array($contractor[0]->mail, 'marker-m2@inbox.ru')); ///*, */
+                            $this->email->to(array($contractor[0]->mail, 'marker-m2@inbox.ru'));
                             $this->email->subject('New cartridge request');
                             $this->email->message($message);
                             $this->email->send();
