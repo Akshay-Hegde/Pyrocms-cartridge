@@ -61,6 +61,7 @@ class Module_Cartridge extends Module {
 		$this->dbforge->drop_table('cartridge_orders');
 		$this->dbforge->drop_table('cartridge_contractors');
 		$this->dbforge->drop_table('cartridge_list');
+		$this->dbforge->drop_table('cartridge_address');
 		
 		$cartridge_settings = "
 			CREATE TABLE ".$this->db->dbprefix('cartridge_settings')." (
@@ -104,7 +105,21 @@ class Module_Cartridge extends Module {
 			`date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 			) ENGINE = MYISAM CHARACTER SET utf8 COLLATE utf8_general_ci COMMENT = 'Таблица наименований картриджей';
 		";	
-		if($this->db->query($cartridge_settings) and $this->db->query($cartridge_orders) and $this->db->query($cartridge_contractors) and $this->db->query($cartridge_list))
+		
+		$cartridge_address = "
+			CREATE TABLE ".$this->db->dbprefix('cartridge_address')." (
+			  id int(11) NOT NULL AUTO_INCREMENT,
+			  user varchar(255) DEFAULT NULL,
+			  address varchar(255) DEFAULT NULL,
+			  PRIMARY KEY (id)
+			) ENGINE = MYISAM CHARACTER SET utf8 COLLATE utf8_general_ci COMMENT = 'Таблица адресов картриджей';
+		";	
+		
+		if($this->db->query($cartridge_settings) 
+		and $this->db->query($cartridge_orders) 
+		and $this->db->query($cartridge_contractors) 
+		and $this->db->query($cartridge_list)
+		AND $this->db->query($cartridge_address))
 		{
 			return TRUE;
 		}
@@ -116,6 +131,7 @@ class Module_Cartridge extends Module {
 		$this->dbforge->drop_table('cartridge_orders');
 		$this->dbforge->drop_table('cartridge_contractors');
 		$this->dbforge->drop_table('cartridge_list');
+		$this->dbforge->drop_table('cartridge_address');
 		return TRUE;
 	}
 

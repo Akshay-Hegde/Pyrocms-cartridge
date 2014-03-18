@@ -11,6 +11,7 @@ class Admin_address extends Admin_Controller {
 	$this->load->model('cartridge_m');
 	$this->lang->load('cartridge');
 	$this->load->model('users/user_m');
+	$this->data = new stdClass();
     }
     public function index ()
     {
@@ -53,13 +54,11 @@ class Admin_address extends Admin_Controller {
 	    $check = $this->cartridge_m->check_address($_POST['user']);
 	    if ($check == 0)
 	    {
-		print 'add';
 		$this->cartridge_m->add_address($_POST);
 		$this->session->set_flashdata('success', lang('message_added_succesfully'));
 	    }
 	    else
 	    {
-		print 'update';
 		$this->cartridge_m->update_address($_POST);
 		$this->session->set_flashdata('success', lang('message_updated_succesfully'));
 	    }

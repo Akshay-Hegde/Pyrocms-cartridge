@@ -1,7 +1,7 @@
 <script>
 	$(document).ready(function(){
 		var cont = <?= $count_active?>;
-		if (cont == 5) {
+		if (cont == 0) {
 			$('#cid').prop('disabled', true);
 			$('#count').prop('disabled', true);
 			$('#comment').prop('disabled', true);
