@@ -68,7 +68,7 @@ class Cartridge extends Public_Controller
                             $message = str_replace('{address}', $address[0]->address, $message);
                             $message = str_replace("\n", "<br/>", $message);
                             $this->email->from($settings[0]->email);
-                            $this->email->to(array($contractor[0]->mail, 'marker-m2@inbox.ru')); ///*, */
+                            $this->email->to(array($contractor[0]->mail));
                             $this->email->cc($this->current_user->email); 
                             $this->email->subject('New cartridge request');
                             $this->email->message($message);
@@ -93,7 +93,6 @@ class Cartridge extends Public_Controller
     public function view ($id = NULL)
     {
         $this->data->id = $id;
-        $this->data->user_id = $this->current_user->id;
         if ($id != NULL and is_numeric($id))
         {
             if (isset($_GET['action']) and $_GET['action'] == 'close')
@@ -125,22 +124,4 @@ class Cartridge extends Public_Controller
             $this->template->title($this->module_details['name'])->build('error', $this->data);
         }
     }
-    
-    function email ()
-    {
-    	$settings = $this->cartridge_m->get_settings();
-    	
-        $this->email->from($settings[0]->email, "test");
-        $this->email->to('sz9801093@megafon-retail.ru');
-        $this->email->subject('Hey! Please, set address to shop');
-        $this->email->message('Was an error with an address of the shop or user ' . $this->current_user->username . '. Please, fix it.');
-        $this->email->send();
-        echo $this->email->print_debugger();
-    }
-    
-    function test ()
-    {
-    	$this->cartridge_m->get_orders($this->current_user->id, 1);
-        var_dump($this->db->last_query());
-	}
 }
