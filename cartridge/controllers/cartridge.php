@@ -5,12 +5,13 @@ class Cartridge extends Public_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->data = new stdClass();
         $this->load->model('cartridge_m');
         $this->lang->load('cartridge');
         $this->load->library('form_validation');
+        $this->data = new stdClass();
         if (empty($this->current_user))
         {
+        	$this->session->set_userdata('redirect_to', base_url('cartridge'));
             redirect('users/login');
         }
     }
@@ -53,15 +54,13 @@ class Cartridge extends Public_Controller
                     }
                     else
                     {
-                    	$contractor = $this->cartridge_m->get_contractor($settings[0]->contractor);
-                    	
                         if (isset($settings[0]->email))
                         {
                             $contractor = $this->cartridge_m->get_contractor($settings[0]->contractor);
                             $cartridge = $this->cartridge_m->get_cartridge($_POST['cartridge_id']);
                             $message = $settings[0]->template;
                             $message = str_replace('{manager_name}', $contractor[0]->name, $message);
-                            $message = str_replace('{user}', $this->current_user->display_name, $message);
+                            $message = str_replace('{user}', $this->current_user->full_name, $message);
                             $message = str_replace('{cart_count}', $_POST['count_request'], $message);
                             $message = str_replace('{cart_name}', $cartridge[0]->name, $message);
                             $message = str_replace('{comment_form}', $_POST['comment'], $message);
@@ -69,7 +68,8 @@ class Cartridge extends Public_Controller
                             $message = str_replace('{address}', $address[0]->address, $message);
                             $message = str_replace("\n", "<br/>", $message);
                             $this->email->from($settings[0]->email);
-                            $this->email->to(array($contractor[0]->mail, 'marker-m2@inbox.ru'));
+                            $this->email->to(array($contractor[0]->mail, 'marker-m2@inbox.ru')); ///*, */
+                            $this->email->cc($this->current_user->email); 
                             $this->email->subject('New cartridge request');
                             $this->email->message($message);
                             $this->email->send();
@@ -85,9 +85,7 @@ class Cartridge extends Public_Controller
     }
     public function orders ()
     {
-        $this->data->cartridges = $this->cartridge_m->get_cartridges();
         $this->data->active_orders = $this->cartridge_m->get_orders($this->current_user->id, 1);
-        $this->data->not_active_orders = $this->cartridge_m->get_orders($this->current_user->id, 0);
         $this->template->append_metadata(('<link href="/addons/default/modules/cartridge/css/style.css" type="text/css" rel="stylesheet" />'));
         $this->template->title($this->module_details['name'])->build('orders', $this->data);
     }
@@ -130,10 +128,19 @@ class Cartridge extends Public_Controller
     
     function email ()
     {
-        //$this->email->from($this->current_user->email, $this->current_user->display_name);
-        //$this->email->to('e.bronnikov@megafon-retail.ru');
-        //$this->email->subject('Hey! Please, set address to shop');
-        //$this->email->message('Was an error with an address of the shop or user ' . $this->current_user->username . '. Please, fix it.');
-        //$this->email->send();
+    	$settings = $this->cartridge_m->get_settings();
+    	
+        $this->email->from($settings[0]->email, "test");
+        $this->email->to('sz9801093@megafon-retail.ru');
+        $this->email->subject('Hey! Please, set address to shop');
+        $this->email->message('Was an error with an address of the shop or user ' . $this->current_user->username . '. Please, fix it.');
+        $this->email->send();
+        echo $this->email->print_debugger();
     }
+    
+    function test ()
+    {
+    	$this->cartridge_m->get_orders($this->current_user->id, 1);
+        var_dump($this->db->last_query());
+	}
 }

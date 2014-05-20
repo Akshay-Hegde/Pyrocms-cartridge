@@ -22,7 +22,7 @@ $lang['frontend:cartridge:messages:id_not_valid'] = 'ID заявки котор�
 
 $lang['frontend:cartridge:messages:added'] = 'Успешно добавлено';
 $lang['frontend:cartridge:messages:close'] = 'Успешно закрыто';
-$lang['frontend:cartridge:messages:no_orders'] = 'Нет заявок';
+$lang['frontend:cartridge:messages:no_orders'] = 'Нет активных заявок';
 
 $lang['frontend:cartridge:index:title'] = 'Отправить заявку';
 $lang['frontend:cartridge:index:cart_need'] = 'Укажите модель картриджа, необходимого вам';

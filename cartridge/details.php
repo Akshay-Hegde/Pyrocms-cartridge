@@ -75,16 +75,14 @@ class Module_Cartridge extends Module {
 		";
 		$cartridge_orders = "
 			CREATE TABLE ".$this->db->dbprefix('cartridge_orders')." (
-			  id int(11) NOT NULL AUTO_INCREMENT,
-			  user_id varchar(255) DEFAULT NULL,
-			  cartridge_id varchar(255) DEFAULT NULL,
-			  count_request varchar(255) DEFAULT NULL,
-			  count_recived varchar(255) DEFAULT NULL,
-			  comment varchar(255) DEFAULT NULL,
-			  status varchar(255) DEFAULT NULL,
-			  date timestamp DEFAULT CURRENT_TIMESTAMP,
-			  date_close timestamp NULL DEFAULT NULL,
-			  PRIMARY KEY (id)
+			`id` INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+			`user_id` VARCHAR(255) NULL ,
+			`cartridge_id` VARCHAR(255) NULL ,
+			`count_request` VARCHAR(255) NULL ,
+			`count_recived` VARCHAR(255) NULL ,
+			`comment` VARCHAR(255) NULL ,
+			`status` VARCHAR(255) NULL ,
+			`date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
 			) ENGINE = MYISAM CHARACTER SET utf8 COLLATE utf8_general_ci COMMENT = 'Таблица заказанного';
 		";
 		$cartridge_contractors = "

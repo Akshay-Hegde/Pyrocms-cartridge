@@ -105,10 +105,10 @@ class Cartridge_m extends MY_Model
     
     public function count_active_orders ($user)
     {
-	$this->db->select('SUM(count_request) AS SUM');
-	$this->db->where('user_id', $user);
-	$this->db->where('status', 1);
-	return $this->db->get('cartridge_orders')->result();
+		$this->db->select('SUM(count_request) AS SUM');
+		$this->db->where('user_id', $user);
+		$this->db->where('status', 1);
+		return $this->db->get('cartridge_orders')->result();
     }
     
     public function add_order ($input)
@@ -123,11 +123,11 @@ class Cartridge_m extends MY_Model
     
     public function get_orders ($user_id, $active = NULL)
     {
-	if (!is_null($active)) { $this->db->where('status', $active); }
-	$this->db->limit(5);
-	$this->db->where('user_id', $user_id);
-	$this->db->order_by('id', 'DESC');
-	return $this->db->get('cartridge_orders')->result();
+		if (!is_null($active)) { $this->db->where('status', $active); }
+		$this->db->limit(5);
+		$this->db->where('user_id', $user_id);
+		$this->db->order_by('id', 'DESC');
+		return $this->db->get('cartridge_orders')->result();
     }
 
     public function get_order ($id , $user)

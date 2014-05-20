@@ -1,12 +1,12 @@
 <script>
 	$(document).ready(function(){
-		var cont = <?= $count_active?>;
-		if (cont <= 0) {
+		var cont = <?= $count_active; ?>;
+		if (cont == 0) {
 			$('#cid').prop('disabled', true);
 			$('#count').prop('disabled', true);
 			$('#comment').prop('disabled', true);
 			$('#btnSave').prop('disabled', true);
-			alert('Вы заказали максимальное количесво картриджей, перейдите в раздел "Ваши заявки"');
+			alert('<?= lang("frontend:cartridge:messages:have_open_order");?>');
 		}
 	});
 </script>
