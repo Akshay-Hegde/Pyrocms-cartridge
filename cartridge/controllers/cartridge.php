@@ -86,7 +86,7 @@ class Cartridge extends Public_Controller
     public function orders ()
     {
         $this->data->active_orders = $this->cartridge_m->get_orders($this->current_user->id, 1);
-        $this->template->append_metadata(('<link href="/addons/default/modules/cartridge/css/style.css" type="text/css" rel="stylesheet" />'));
+        $this->template->append_metadata(css('style.css', 'cartridge'));
         $this->template->title($this->module_details['name'])->build('orders', $this->data);
     }
     
