@@ -15,7 +15,7 @@ $lang['cartridge_list'] = 'Catridge list';
 //**********************************************
 
 $lang['frontend:cartridge:messages:no_address'] = 'You have not a delivery address. Please, contact the support service.';
-$lang['frontend:cartridge:messages:have_open_order'] = 'You have an open order. Please, contact the support service.';
+$lang['frontend:cartridge:messages:have_open_order'] = 'You have an open order. Please, go to <a href="'.base_url('cartridge/orders').'">your orders</a> and close their.';
 $lang['frontend:cartridge:messages:max_order'] = 'You ordered more than available to you at the moment.';
 $lang['frontend:cartridge:messages:order_is_close'] = 'The oreder is closed';
 $lang['frontend:cartridge:messages:id_not_valid'] = 'The order ID is not correct';

@@ -9,6 +9,8 @@ class Cartridge extends Public_Controller
         $this->lang->load('cartridge');
         $this->load->library('form_validation');
         $this->data = new stdClass();
+        $this->template->append_metadata(css('style.css', 'cartridge'));
+        $this->template->append_metadata(css('modal.css', 'cartridge'));
         if (empty($this->current_user))
         {
         	$this->session->set_userdata('redirect_to', base_url('cartridge'));
@@ -86,7 +88,6 @@ class Cartridge extends Public_Controller
     public function orders ()
     {
         $this->data->active_orders = $this->cartridge_m->get_orders($this->current_user->id, 1);
-        $this->template->append_metadata(css('style.css', 'cartridge'));
         $this->template->title($this->module_details['name'])->build('orders', $this->data);
     }
     

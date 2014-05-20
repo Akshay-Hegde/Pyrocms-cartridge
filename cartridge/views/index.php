@@ -6,10 +6,16 @@
 			$('#count').prop('disabled', true);
 			$('#comment').prop('disabled', true);
 			$('#btnSave').prop('disabled', true);
-			alert('<?= lang("frontend:cartridge:messages:have_open_order");?>');
+			//alert('<?= lang("frontend:cartridge:messages:have_open_order");?>');
+			$("#modal-content, #modal-background").toggleClass("active");
 		}
 	});
 </script>
+<div id="modal-background"></div>
+<div id="modal-content">
+    <!--<a style="text-decoration: underline; cursor: pointer" id="modal-close">Close</a>-->
+    <p><?= lang("frontend:cartridge:messages:have_open_order");?></p>
+</div>
 <h2 id="page_title" class="page-title"><?= lang('frontend:cartridge:index:title');?></h2>
 <div>
 	<?php if(validation_errors()):?>
